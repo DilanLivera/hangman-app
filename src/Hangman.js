@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { randomWord } from "./words";
 import "./Hangman.css";
-import img0 from "./0.jpg";
-import img1 from "./1.jpg";
-import img2 from "./2.jpg";
-import img3 from "./3.jpg";
-import img4 from "./4.jpg";
-import img5 from "./5.jpg";
-import img6 from "./6.jpg";
+import img0 from "./img/0.jpg";
+import img1 from "./img/1.jpg";
+import img2 from "./img/2.jpg";
+import img3 from "./img/3.jpg";
+import img4 from "./img/4.jpg";
+import img5 from "./img/5.jpg";
+import img6 from "./img/6.jpg";
 
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
@@ -62,15 +62,23 @@ class Hangman extends Component {
     ));
   }
 
-  /** render: render game */
-  render() {
+  /** getGameState: return the current gameState */
+  getGameState(){
     const gameOver = (this.state.nWrong >= this.props.maxGuesses);
     const isWinner = this.guessedWord().join("") === this.state.answer;
-    const altText = `${this.state.nWrong}/${this.props.maxGuesses}`;
     let gameState = this.generateButtons();
 
     if(isWinner) gameState = "You Win!";
     if(gameOver) gameState = "You Loose!";
+
+    return gameState;
+  }
+
+  /** render: render game */
+  render() {
+    const gameOver = (this.state.nWrong >= this.props.maxGuesses);
+    const altText = `${this.state.nWrong}/${this.props.maxGuesses}`;
+    let gameState = this.getGameState();
 
     return (
       <div className='Hangman'>

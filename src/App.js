@@ -5,8 +5,8 @@ import Hangman from "./Hangman";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Hangman maxGuesses={ 6 } />
+      <div className="App" data-test="AppComponent">
+        <Hangman data-test="HangmanComponent" maxGuesses={ 6 } />
       </div>
     );
   }
